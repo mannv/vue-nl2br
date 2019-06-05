@@ -96,10 +96,16 @@ exports.default = {
     text: {
       type: String,
       required: true
+    },
+    className: {
+      type: String,
+      required: false
     }
   },
   render: function render(createElement, context) {
-    return createElement(context.props.tag, context.props.text.split('\n').reduce(function (accumulator, string) {
+    return createElement(context.props.tag, {
+      'class': context.props.className
+    }, context.props.text.split('\n').reduce(function (accumulator, string) {
       if (!Array.isArray(accumulator)) {
         return [accumulator, createElement('br'), string];
       }
